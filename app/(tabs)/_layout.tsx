@@ -1,43 +1,127 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from "expo-router";
+import React from "react";
+import { View } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          position: "absolute",
+          bottom: 16,
+          left: 16,
+          right: 16,
+          height: 72,
+          backgroundColor: "black",
+          borderColor: "none",
+          borderRadius: 40,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: focused ? "white" : "transparent",
+                borderRadius: "50%",
+              }}
+            >
+              <Feather name="home" color={focused ? "#59008c" : "white"} size={28} />
+            </View>
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="cart"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: focused ? "white" : "transparent",
+                borderRadius: "50%",
+              }}
+            >
+              <Feather name="shopping-bag" color={focused ? "#59008c" : "white"} size={28} />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="favourite"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: focused ? "white" : "transparent",
+                borderRadius: "50%",
+              }}
+            >
+              <Feather name="heart" color={focused ? "#59008c" : "white"} size={28} />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="chats"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: focused ? "white" : "transparent",
+                borderRadius: "50%",
+              }}
+            >
+              <Feather name="message-square" color={focused ? "#59008c" : "white"} size={28} />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                width: 50,
+                height: 50,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: focused ? "white" : "transparent",
+                borderRadius: "50%",
+              }}
+            >
+              <Feather name="user" color={focused ? "#59008c" : "white"} size={28} />
+            </View>
+          ),
         }}
       />
     </Tabs>
