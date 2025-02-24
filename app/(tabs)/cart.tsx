@@ -1,3 +1,4 @@
+import DragToSlideButton from "@/components/buttons/DragToSlideButton";
 import Screen from "@/components/Screen";
 import { Dimensions, ScrollView, Text } from "react-native";
 
@@ -17,6 +18,8 @@ const cart = () => {
         }}
       >
         <Text>Cart screen </Text>
+
+        <DragToSlideButton />
       </ScrollView>
     </Screen>
   );

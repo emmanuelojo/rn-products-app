@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
 
 export default function TabLayout() {
   return (
@@ -15,7 +16,7 @@ export default function TabLayout() {
           left: 16,
           right: 16,
           height: 72,
-          backgroundColor: "black",
+          backgroundColor: Colors.black,
           borderColor: "none",
           borderRadius: 40,
           flexDirection: "row",
@@ -39,7 +40,7 @@ export default function TabLayout() {
                 borderRadius: "50%",
               }}
             >
-              <Feather name="home" color={focused ? "#59008c" : "white"} size={28} />
+              <Feather name="home" color={focused ? Colors.greenPrimary : "white"} size={28} />
             </View>
           ),
         }}
@@ -59,7 +60,7 @@ export default function TabLayout() {
                 borderRadius: "50%",
               }}
             >
-              <Feather name="shopping-bag" color={focused ? "#59008c" : "white"} size={28} />
+              <Feather name="shopping-bag" color={focused ? Colors.greenPrimary : "white"} size={28} />
             </View>
           ),
         }}
@@ -79,7 +80,7 @@ export default function TabLayout() {
                 borderRadius: "50%",
               }}
             >
-              <Feather name="heart" color={focused ? "#59008c" : "white"} size={28} />
+              <Feather name="heart" color={focused ? Colors.greenPrimary : "white"} size={28} />
             </View>
           ),
         }}
@@ -99,7 +100,7 @@ export default function TabLayout() {
                 borderRadius: "50%",
               }}
             >
-              <Feather name="message-square" color={focused ? "#59008c" : "white"} size={28} />
+              <Feather name="message-square" color={focused ? Colors.greenPrimary : "white"} size={28} />
             </View>
           ),
         }}
@@ -119,7 +120,7 @@ export default function TabLayout() {
                 borderRadius: "50%",
               }}
             >
-              <Feather name="user" color={focused ? "#59008c" : "white"} size={28} />
+              <Feather name="user" color={focused ? Colors.greenPrimary : "white"} size={28} />
             </View>
           ),
         }}

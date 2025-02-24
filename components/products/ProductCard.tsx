@@ -1,8 +1,11 @@
-import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import IconButton from "../buttons/IconButton";
 import { Product } from "@/types/Products";
 import { useState } from "react";
 import Toast from "react-native-toast-message";
+import { Colors } from "@/constants/Colors";
+import { truncateString } from "@/lib/string";
+import { formatCurrency } from "@/lib/currency";
 
 interface Props {
   product: Product;
@@ -26,11 +29,25 @@ const ProductCard = ({ product, onPress }: Props) => {
       <View style={styles.likeButton}>
         <IconButton
           onPress={handleFavourite}
-          color={isFavourite ? "#192126" : "black"}
+          color={isFavourite ? Colors.greenPrimary : Colors.black}
           name={isFavourite ? "favorite" : "favorite-outline"}
         />
       </View>
       <Image source={{ uri: product.images[0] }} style={styles.productImage} />
+
+      <View
+        style={{
+          width: "100%",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          gap: 2,
+          paddingVertical: 4,
+          paddingHorizontal: 8,
+        }}
+      >
+        <Text style={{ fontSize: 14, fontWeight: 500, textAlign: "left" }}>{truncateString(product.title, 20)}</Text>
+        <Text style={{ fontSize: 14, textAlign: "left" }}>{formatCurrency(product.price)}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -40,8 +57,8 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 10,
     backgroundColor: "#f0f0f0",
+    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
     height: 250,
     borderRadius: 8,
     position: "relative",
@@ -67,9 +84,10 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: "100%",
-    height: 250,
+    height: 200,
     objectFit: "cover",
-    borderRadius: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
 });
 
