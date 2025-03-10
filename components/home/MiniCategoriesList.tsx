@@ -35,12 +35,12 @@ const MiniCategoriesList = () => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          borderRadius: "100%",
+          borderRadius: 99999,
           marginHorizontal: "auto",
         }}
       >
         {category.image && (
-          <Image source={category.image} style={{ width: 80, height: 80, objectFit: "cover", borderRadius: "100%" }} />
+          <Image source={category.image} style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 99999 }} />
         )}
       </View>
       <Text style={{ fontSize: 14, textAlign: "center", textOverflow: "ellipsis" }}>{category.name}</Text>

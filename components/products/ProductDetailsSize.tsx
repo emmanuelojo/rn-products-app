@@ -1,5 +1,6 @@
+import { Colors } from "@/constants/Colors";
 import { useState } from "react";
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 
 const ProductDetailsSize = () => {
   const sizes = ["s", "m", "l", "xl", "xxl", "xxxl"];
@@ -27,7 +28,7 @@ const ProductDetailsSize = () => {
           justifyContent: "center",
           paddingHorizontal: 8,
           borderRadius: 10,
-          backgroundColor: selectedSize === size ? "brown" : "white",
+          backgroundColor: selectedSize === size ? Colors.greenPrimary : "white",
         }}
       >
         <Text
@@ -48,27 +49,25 @@ const ProductDetailsSize = () => {
     <Pressable onPress={() => setSelectedColour(colour)} style={{ marginRight: 16 }}>
       <View
         style={{
-          minWidth: 40,
+          minWidth: 30,
           width: "auto",
-          height: 40,
+          height: 30,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          paddingHorizontal: 8,
-          borderRadius: 10,
-          backgroundColor: selectedColour === colour ? "brown" : "white",
+          borderRadius: "100%",
+          backgroundColor: colour,
         }}
       >
-        <Text
+        <View
           style={{
-            fontSize: 14,
-            textAlign: "center",
-            color: selectedColour === colour ? "white" : "black",
-            textTransform: "capitalize",
+            minWidth: 15,
+            width: "auto",
+            height: 15,
+            borderRadius: "100%",
+            backgroundColor: selectedColour === colour ? "white" : colour,
           }}
-        >
-          {colour}
-        </Text>
+        ></View>
       </View>
     </Pressable>
   );
@@ -78,27 +77,25 @@ const ProductDetailsSize = () => {
       <View style={{ flexDirection: "column", gap: 16 }}>
         <Text style={{ fontSize: 18, fontWeight: 600 }}>Select Size</Text>
 
-        <FlatList
-          data={sizes}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <SizesButton size={item} />}
-          keyExtractor={(item) => item}
-        />
+        <View style={{ flexDirection: "row", gap: 8, overflow: "scroll" }}>
+          {sizes.map((size) => (
+            <SizesButton size={size} key={size} />
+          ))}
+        </View>
       </View>
 
       <View style={{ flexDirection: "column", gap: 16 }}>
-        <Text style={{ fontSize: 18, fontWeight: 600, textTransform: "capitalize" }}>
-          Select Colour: {selectedColour}
-        </Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+          <Text style={{ fontSize: 18, fontWeight: 600, textTransform: "capitalize" }}>Select Colour:</Text>
 
-        <FlatList
-          data={colours}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <ColoursButton colour={item} />}
-          keyExtractor={(item) => item}
-        />
+          <Text style={{ fontSize: 17, fontWeight: 300, textTransform: "capitalize" }}>{selectedColour}</Text>
+        </View>
+
+        <View style={{ flexDirection: "row", gap: 8 }}>
+          {colours.map((colour) => (
+            <ColoursButton colour={colour} key={colour} />
+          ))}
+        </View>
       </View>
     </View>
   );

@@ -2,16 +2,18 @@ import { FlatList, View, Text, Image, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { Category } from "@/types/Categories";
 import Screen from "@/components/Screen";
+import { categoriesList } from "@/data/categories";
 
 const CategoriesList = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("https://api.escuelajs.co/api/v1/categories");
-      const data = await response.json();
+      // const response = await fetch("https://api.escuelajs.co/api/v1/categories");
+      // const data = await response.json();
 
-      setCategories(data);
+      // setCategories(data);
+      setCategories(categoriesList);
     } catch (error) {
       console.log("An error occurred");
     }
@@ -35,7 +37,7 @@ const CategoriesList = () => {
   //           flexDirection: "row",
   //           alignItems: "center",
   //           justifyContent: "center",
-  //           borderRadius: "100%",
+  //           borderRadius: 99999,
   //         }}
   //       >
   //         <Image source={category.image} style={{ width: 30, height: 30, objectFit: "cover" }} />
@@ -61,11 +63,11 @@ const CategoriesList = () => {
           alignItems: "center",
           justifyContent: "center",
           gap: 8,
-          borderRadius: "100%",
+          borderRadius: 99999,
         }}
       >
         {category.image && (
-          <Image source={category.image} style={{ width: 80, height: 80, objectFit: "cover", borderRadius: "100%" }} />
+          <Image source={category.image} style={{ width: 80, height: 80, objectFit: "cover", borderRadius: 99999 }} />
         )}
       </View>
       <View>
@@ -80,8 +82,7 @@ const CategoriesList = () => {
 
   return (
     <Screen>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
+      <View
         style={{
           flexDirection: "column",
           gap: 24,
@@ -97,7 +98,7 @@ const CategoriesList = () => {
             keyExtractor={(item) => item.id.toString()}
           />
         )}
-      </ScrollView>
+      </View>
     </Screen>
   );
 };

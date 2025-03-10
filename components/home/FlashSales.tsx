@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import ProductCard from "../products/ProductCard";
+import { productsList } from "@/data/products";
 
 const FlashSales = () => {
   const router = useRouter();
@@ -11,10 +12,12 @@ const FlashSales = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://api.escuelajs.co/api/v1/products");
-      const data = await response.json();
+      // const response = await fetch("https://api.escuelajs.co/api/v1/products");
+      // const data = await response.json();
 
-      setProducts(data);
+      // setProducts(data);
+
+      setProducts(productsList);
       setIsLoading(false);
     } catch (error) {
       console.log("An error occurred");
@@ -37,8 +40,171 @@ const FlashSales = () => {
     { id: "4", name: "Item 4" },
   ];
 
+  // return (
+  //   <FlatList
+  //     data={products}
+  //     renderItem={({ item }) => <ProductCard product={item} onPress={() => viewProductDetails(item.id)} />}
+  //     keyExtractor={(item) => item.id.toString()}
+  //     numColumns={2} // Set number of columns to 2
+  //     contentContainerStyle={styles.grid}
+  //   />
+  // );
+
+  // return (
+  //   <View style={{ flexDirection: "column", gap: 16, marginTop: 24, height: 600, borderWidth: 1, borderColor: "red" }}>
+  //     <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 3 }}>
+  //       <Text style={{ fontSize: 18 }}>Flash Sale</Text>
+
+  //       <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 8 }}>
+  //         <Text>Closing in:</Text>
+
+  //         <View style={{ flexDirection: "row", gap: 3 }}>
+  //           <View>
+  //             <Text> 02</Text>
+  //           </View>
+  //           <Text>: </Text>
+  //           <View>
+  //             <Text> 12</Text>
+  //           </View>
+  //           <Text> :</Text>
+  //           <View>
+  //             <Text>56 </Text>
+  //           </View>
+  //         </View>
+  //       </View>
+  //     </View>
+
+  //     <View style={{ flexDirection: "row", gap: 8 }}>
+  //       <View>
+  //         <Text>All </Text>
+  //       </View>
+  //       <View>
+  //         <Text>Newest </Text>
+  //       </View>
+  //       <View>
+  //         <Text> Popular</Text>
+  //       </View>
+  //       <View>
+  //         <Text>Bedroom </Text>
+  //       </View>
+  //     </View>
+
+  //     <View>
+  //       {products && (
+  //         <FlatList
+  //           data={products}
+  //           renderItem={({ item }) => <ProductCard product={item} onPress={() => viewProductDetails(item.id)} />}
+  //           keyExtractor={(item) => item.id.toString()}
+  //           numColumns={2} // Set number of columns to 2
+  //           contentContainerStyle={styles.grid}
+  //         />
+  //       )}
+
+  //       {isLoading && (
+  //         <FlatList
+  //           data={skeletonData}
+  //           renderItem={({ item }) => <View style={styles.itemContainer}></View>}
+  //           keyExtractor={(item) => item.id.toString()}
+  //           numColumns={2} // Set number of columns to 2
+  //           contentContainerStyle={styles.grid}
+  //         />
+  //       )}
+
+  //       {!isLoading && products.length < 1 && (
+  //         <View>
+  //           <Text>No products found</Text>
+  //         </View>
+  //       )}
+  //     </View>
+  //   </View>
+  // );
+
+  // return (
+  //   <View style={{ flexDirection: "column", gap: 16, marginTop: 24, height: 600, borderWidth: 1, borderColor: "red" }}>
+  //     <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 3 }}>
+  //       <Text style={{ fontSize: 18 }}>Flash Sale</Text>
+
+  //       <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 8 }}>
+  //         <Text>Closing in:</Text>
+
+  //         <View style={{ flexDirection: "row", gap: 3 }}>
+  //           <View>
+  //             <Text> 02</Text>
+  //           </View>
+  //           <Text>: </Text>
+  //           <View>
+  //             <Text> 12</Text>
+  //           </View>
+  //           <Text> :</Text>
+  //           <View>
+  //             <Text>56 </Text>
+  //           </View>
+  //         </View>
+  //       </View>
+  //     </View>
+
+  //     <View style={{ flexDirection: "row", gap: 8 }}>
+  //       <View>
+  //         <Text>All </Text>
+  //       </View>
+  //       <View>
+  //         <Text>Newest </Text>
+  //       </View>
+  //       <View>
+  //         <Text> Popular</Text>
+  //       </View>
+  //       <View>
+  //         <Text>Bedroom </Text>
+  //       </View>
+  //     </View>
+
+  //     <View>
+  //       {products && (
+  //         <FlatList
+  //           data={products}
+  //           renderItem={({ item }) => <ProductCard product={item} onPress={() => viewProductDetails(item.id)} />}
+  //           keyExtractor={(item) => item.id.toString()}
+  //           numColumns={2} // Set number of columns to 2
+  //           contentContainerStyle={styles.grid}
+  //         />
+  //       )}
+
+  //       {isLoading && (
+  //         <FlatList
+  //           data={skeletonData}
+  //           renderItem={({ item }) => <View style={styles.itemContainer}></View>}
+  //           keyExtractor={(item) => item.id.toString()}
+  //           numColumns={2} // Set number of columns to 2
+  //           contentContainerStyle={styles.grid}
+  //         />
+  //       )}
+
+  //       {!isLoading && products.length < 1 && (
+  //         <View>
+  //           <Text>No products found</Text>
+  //         </View>
+  //       )}
+  //     </View>
+  //   </View>
+  // );
+
+  const renderGrid = () => {
+    let rows = [];
+    for (let i = 0; i < products.length; i += 2) {
+      rows.push(products.slice(i, i + 2));
+    }
+
+    return rows.map((row, rowIndex) => (
+      <View key={rowIndex} style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 10 }}>
+        {row.map((product) => (
+          <ProductCard key={product.id} product={product} onPress={() => viewProductDetails(product.id)} />
+        ))}
+      </View>
+    ));
+  };
+
   return (
-    <View style={{ flexDirection: "column", gap: 16, marginTop: 24 }}>
+    <View style={{ flexDirection: "column", gap: 16, marginTop: 24, height: 600 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 3 }}>
         <Text style={{ fontSize: 18 }}>Flash Sale</Text>
 
@@ -77,7 +243,7 @@ const FlashSales = () => {
       </View>
 
       <View>
-        {products && (
+        {/* {products && (
           <FlatList
             data={products}
             renderItem={({ item }) => <ProductCard product={item} onPress={() => viewProductDetails(item.id)} />}
@@ -85,9 +251,11 @@ const FlashSales = () => {
             numColumns={2} // Set number of columns to 2
             contentContainerStyle={styles.grid}
           />
-        )}
+        )} */}
 
-        {isLoading && (
+        <View>{renderGrid()}</View>
+
+        {/* {isLoading && (
           <FlatList
             data={skeletonData}
             renderItem={({ item }) => <View style={styles.itemContainer}></View>}
@@ -95,6 +263,12 @@ const FlashSales = () => {
             numColumns={2} // Set number of columns to 2
             contentContainerStyle={styles.grid}
           />
+        )} */}
+
+        {isLoading && (
+          <View>
+            <Text>Loading...</Text>
+          </View>
         )}
 
         {!isLoading && products.length < 1 && (
@@ -131,7 +305,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#ffffff",
-    borderRadius: "100%",
+    borderRadius: 99999,
     position: "absolute",
     top: 16,
     right: 16,

@@ -1,9 +1,15 @@
 import { Feather } from "@expo/vector-icons";
 import { Dimensions, Text, View } from "react-native";
+import AddToCartButton from "../buttons/AddToCartButton";
+import { Colors } from "@/constants/Colors";
 
 const { width } = Dimensions.get("window");
 
-const ProductDetailsAddToCart = () => {
+type Props = {
+  price: number;
+};
+
+const ProductDetailsAddToCart = ({ price }: Props) => {
   return (
     <View
       style={{
@@ -20,10 +26,10 @@ const ProductDetailsAddToCart = () => {
     >
       <View>
         <Text style={{ fontSize: 14, color: "gray" }}>Total Price</Text>
-        <Text style={{ fontSize: 14 }}>$83.97</Text>
+        <Text style={{ fontSize: 14 }}>${price}.00</Text>
       </View>
 
-      <View
+      {/* <View
         style={{
           height: 50,
           width: 200,
@@ -37,7 +43,14 @@ const ProductDetailsAddToCart = () => {
       >
         <Feather name="shopping-bag" size={24} color="white" />
         <Text style={{ color: "white" }}>Add to Cart</Text>
-      </View>
+      </View> */}
+
+      <AddToCartButton
+        title="Swipe to Add to Cart"
+        bgColour={Colors.greenPrimary}
+        textColour="white"
+        textAnimationColour="white"
+      />
     </View>
   );
 };

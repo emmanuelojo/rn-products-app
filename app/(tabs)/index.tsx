@@ -48,7 +48,7 @@ const HomeScreen = () => {
                 top: 4,
                 right: 4,
                 backgroundColor: "red",
-                borderRadius: "100%",
+                borderRadius: 99999,
               }}
             ></View>
           </View>

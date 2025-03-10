@@ -10,6 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ProductDetailsAddToCart from "@/components/products/ProductDetailsAddToCart";
 import HorizontalDivider from "@/components/HorizontalDivider";
 import ProductDetailsSize from "@/components/products/ProductDetailsSize";
+import { productsList } from "@/data/products";
 
 const ProductDetails = () => {
   const { id } = useLocalSearchParams();
@@ -21,10 +22,13 @@ const ProductDetails = () => {
 
   const fetchProduct = async () => {
     try {
-      const response = await fetch(`https://api.escuelajs.co/api/v1/products/${Number(id)}`);
-      const data = await response.json();
+      // const response = await fetch(`https://api.escuelajs.co/api/v1/products/${Number(id)}`);
+      // const data = await response.json();
 
-      setProduct(data);
+      // setProduct(data);
+
+      const productData = productsList.filter((product) => product.id === Number(id))[0];
+      setProduct(productData);
       setIsLoading(false);
     } catch (error) {
       console.log("An error occurred");
@@ -121,8 +125,13 @@ const ProductDetails = () => {
         </View>
       </ScrollView>
 
+      {/* {product && (
+        <View style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+          <ProductDetailsAddToCart price={product.price} />
+        </View>
+      )} */}
       <View style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
-        <ProductDetailsAddToCart />
+        <ProductDetailsAddToCart price={893} />
       </View>
     </Screen>
   );

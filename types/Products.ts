@@ -7,4 +7,11 @@ export interface Product {
   description: string;
   category: Category;
   images: string[];
+  slug?: string;
+  creationAt?: string | Date;
+  updatedAt?: string | Date;
+}
+
+export interface CartProduct extends Product {
+  quantity: number;
 }

@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View, Text, Animated as RNAnimated, useAnimatedValue } from "react-native";
 import { Gesture, GestureDetector, GestureHandlerRootView, Pressable } from "react-native-gesture-handler";
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, interpolateColor } from "react-native-reanimated";
+import TripleChevron from "../icons/TripleChevron";
+import { Colors } from "@/constants/Colors";
 
 type Props = {
   title?: string;
@@ -19,7 +21,7 @@ const BUTTON_PADDING = 10;
 const SWIPEABLE_DIMENSIONS = BUTTON_HEIGHT - 2 * BUTTON_PADDING;
 const H_SWIPE_RANGE = BUTTON_WIDTH - 2 * BUTTON_PADDING - SWIPEABLE_DIMENSIONS;
 
-export default function DragToSlideButton({ title, width, height, bgColour, textColour, textAnimationColour }: Props) {
+export default function AddToCartButton({ title, width, height, bgColour, textColour, textAnimationColour }: Props) {
   const [dragCompleted, setDragCompleted] = useState(false);
   const colorAnim = useRef(new RNAnimated.Value(0)).current;
   // const fadeAnim = useAnimatedValue(0);
@@ -132,16 +134,18 @@ export default function DragToSlideButton({ title, width, height, bgColour, text
         <GestureDetector gesture={panGesture}>
           <Animated.View style={[styles.swipeable, AnimatedStyles.swipeable]}>
             {dragCompleted ? (
-              <View style={styles.iconsWrapper}>
+              <View>
                 <MaterialIcons name="check" color="white" size={24} />
               </View>
             ) : (
-              <RNAnimated.View style={[styles.iconsWrapper]}>
-                <MaterialIcons name="keyboard-double-arrow-right" size={24} color={colorInterpolation as string} />
+              <RNAnimated.View>
+                <MaterialIcons name="shopping-bag" color={Colors.greenPrimary} size={20} />
               </RNAnimated.View>
             )}
           </Animated.View>
         </GestureDetector>
+
+        {/* <TripleChevron /> */}
 
         <Animated.Text style={[styles.swipeText, AnimatedStyles.swipeText]}>
           {dragCompleted ? "Success" : title || "Swipe Button"}

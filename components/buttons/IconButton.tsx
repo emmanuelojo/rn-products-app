@@ -19,7 +19,7 @@ const IconButton = ({ style, size = 24, color = "black", name, onPress }: Props)
           height: 40,
           width: 40,
           backgroundColor: "#ffffff",
-          borderRadius: "100%",
+          borderRadius: 99999,
           alignItems: "center",
           justifyContent: "center",
         },
